@@ -70,6 +70,12 @@ window.addEventListener('load', setActiveLink);
 
 // Subtle fade-and-rise animation using IntersectionObserver.
 const revealElements = document.querySelectorAll('.reveal');
+const serviceCards = document.querySelectorAll('.service-card.reveal');
+
+// Stagger service cards so they cascade in sequence as they enter view.
+serviceCards.forEach((card, index) => {
+  card.style.setProperty('--stagger-delay', `${index * 100}ms`);
+});
 
 const revealObserver = new IntersectionObserver(
   (entries, observer) => {
