@@ -202,119 +202,165 @@
       <!-- Portfolio: masonry-inspired CSS grid gallery -->
       <section id="portfolio" class="section portfolio">
         <div class="container">
-          <div class="section-head reveal">
-            <p class="section-label">Portfolio</p>
-            <h2>Selected works</h2>
+          <div class="section-head portfolio-head reveal">
+            <p class="section-label portfolio-label">My Work</p>
+            <h2>Selected Portfolio</h2>
+            <p class="portfolio-subtext">
+              A curated selection of art, design and visual storytelling
+            </p>
           </div>
 
-          <div class="gallery">
-            <article class="gallery-item tall reveal">
+          <div class="portfolio-filters" role="tablist" aria-label="Portfolio categories">
+            <button class="portfolio-tab active" type="button" role="tab" aria-selected="true" data-filter="all">
+              All
+            </button>
+            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="fine-art">
+              Fine Art
+            </button>
+            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="brand-identity">
+              Brand Identity
+            </button>
+            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="print-design">
+              Print Design
+            </button>
+            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="digital">
+              Digital
+            </button>
+            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="typography">
+              Typography
+            </button>
+          </div>
+
+          <div class="portfolio-grid">
+            <article class="portfolio-item item-large reveal" data-category="fine-art">
               <img
-                src="https://picsum.photos/seed/work01/900/1200"
-                alt="Abstract forms artwork"
+                src="https://picsum.photos/seed/mugema-work01/1200/900"
+                alt="Expressive mixed media art composition"
                 loading="lazy"
               />
-              <div class="overlay">
-                <h3>Echo Forms</h3>
-                <p>Fine Art</p>
+              <div class="portfolio-overlay">
+                <p class="portfolio-category">Fine Art</p>
+                <h3 class="portfolio-title">Echoes of Kampala</h3>
+                <span class="portfolio-line" aria-hidden="true"></span>
+                <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="gallery-item wide reveal">
+            <article class="portfolio-item item-tall reveal" data-category="brand-identity">
               <img
-                src="https://picsum.photos/seed/work02/1200/820"
-                alt="Poster design artwork"
+                src="https://picsum.photos/seed/mugema-work02/900/1200"
+                alt="Brand identity symbol system mockups"
                 loading="lazy"
               />
-              <div class="overlay">
-                <h3>Night Poster Series</h3>
-                <p>Print Design</p>
+              <div class="portfolio-overlay">
+                <p class="portfolio-category">Brand Identity</p>
+                <h3 class="portfolio-title">Nile Craft Studio</h3>
+                <span class="portfolio-line" aria-hidden="true"></span>
+                <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="gallery-item reveal">
+            <article class="portfolio-item item-standard reveal" data-category="print-design">
               <img
-                src="https://picsum.photos/seed/work03/850/950"
-                alt="Brand identity visuals"
+                src="https://picsum.photos/seed/mugema-work03/900/900"
+                alt="Poster series typography concept"
                 loading="lazy"
               />
-              <div class="overlay">
-                <h3>Atelier Rue</h3>
-                <p>Brand Identity</p>
+              <div class="portfolio-overlay">
+                <p class="portfolio-category">Print Design</p>
+                <h3 class="portfolio-title">Night Print Series</h3>
+                <span class="portfolio-line" aria-hidden="true"></span>
+                <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="gallery-item reveal">
+            <article class="portfolio-item item-standard reveal" data-category="digital">
               <img
-                src="https://picsum.photos/seed/work04/840/980"
-                alt="Illustration with geometric texture"
+                src="https://picsum.photos/seed/mugema-work04/900/900"
+                alt="Social campaign visual assets"
                 loading="lazy"
               />
-              <div class="overlay">
-                <h3>Drift Figures</h3>
-                <p>Illustration</p>
+              <div class="portfolio-overlay">
+                <p class="portfolio-category">Digital</p>
+                <h3 class="portfolio-title">Motion Social Kit</h3>
+                <span class="portfolio-line" aria-hidden="true"></span>
+                <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="gallery-item wide reveal">
+            <article class="portfolio-item item-standard reveal" data-category="fine-art">
               <img
-                src="https://picsum.photos/seed/work05/1250/840"
-                alt="Editorial spread design"
+                src="https://picsum.photos/seed/mugema-work05/900/900"
+                alt="Experimental fine art canvas"
                 loading="lazy"
               />
-              <div class="overlay">
-                <h3>Volume 07 Editorial</h3>
-                <p>Editorial Layout</p>
+              <div class="portfolio-overlay">
+                <p class="portfolio-category">Fine Art</p>
+                <h3 class="portfolio-title">Muted Terrain Study</h3>
+                <span class="portfolio-line" aria-hidden="true"></span>
+                <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="gallery-item tall reveal">
+            <article class="portfolio-item item-medium reveal" data-category="brand-identity">
               <img
-                src="https://picsum.photos/seed/work06/900/1250"
-                alt="Mixed media artwork"
+                src="https://picsum.photos/seed/mugema-work06/900/900"
+                alt="Identity and packaging concept board"
                 loading="lazy"
               />
-              <div class="overlay">
-                <h3>Muted Terrain</h3>
-                <p>Fine Art</p>
+              <div class="portfolio-overlay">
+                <p class="portfolio-category">Brand Identity</p>
+                <h3 class="portfolio-title">Kampala Roast Co.</h3>
+                <span class="portfolio-line" aria-hidden="true"></span>
+                <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="gallery-item reveal">
+            <article class="portfolio-item item-large reveal" data-category="typography">
               <img
-                src="https://picsum.photos/seed/work07/860/960"
-                alt="Packaging identity mockup"
+                src="https://picsum.photos/seed/mugema-work07/1200/900"
+                alt="Custom typographic artwork composition"
                 loading="lazy"
               />
-              <div class="overlay">
-                <h3>Nord Candle Co.</h3>
-                <p>Packaging</p>
+              <div class="portfolio-overlay">
+                <p class="portfolio-category">Typography</p>
+                <h3 class="portfolio-title">Letterform Rhythms</h3>
+                <span class="portfolio-line" aria-hidden="true"></span>
+                <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="gallery-item reveal">
+            <article class="portfolio-item item-standard reveal" data-category="print-design">
               <img
-                src="https://picsum.photos/seed/work08/860/980"
-                alt="Typographic print experiment"
+                src="https://picsum.photos/seed/mugema-work08/900/900"
+                alt="Editorial publication layout spread"
                 loading="lazy"
               />
-              <div class="overlay">
-                <h3>Type Study No. 4</h3>
-                <p>Print Design</p>
+              <div class="portfolio-overlay">
+                <p class="portfolio-category">Print Design</p>
+                <h3 class="portfolio-title">Makerere Journal Vol. 2</h3>
+                <span class="portfolio-line" aria-hidden="true"></span>
+                <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="gallery-item wide reveal">
+            <article class="portfolio-item item-tall reveal" data-category="digital">
               <img
-                src="https://picsum.photos/seed/work09/1280/860"
-                alt="Campaign art direction board"
+                src="https://picsum.photos/seed/mugema-work09/900/1200"
+                alt="Digital storytelling campaign direction board"
                 loading="lazy"
               />
-              <div class="overlay">
-                <h3>Season Launch 26</h3>
-                <p>Art Direction</p>
+              <div class="portfolio-overlay">
+                <p class="portfolio-category">Digital</p>
+                <h3 class="portfolio-title">Urban Pulse Campaign</h3>
+                <span class="portfolio-line" aria-hidden="true"></span>
+                <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
+          </div>
+
+          <div class="portfolio-footer reveal">
+            <a class="portfolio-more-link" href="#">View All Work →</a>
           </div>
         </div>
       </section>

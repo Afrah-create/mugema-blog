@@ -71,10 +71,17 @@ window.addEventListener('load', setActiveLink);
 // Subtle fade-and-rise animation using IntersectionObserver.
 const revealElements = document.querySelectorAll('.reveal');
 const serviceCards = document.querySelectorAll('.service-card.reveal');
+const portfolioItems = document.querySelectorAll('.portfolio-item.reveal');
+const portfolioTabs = document.querySelectorAll('.portfolio-tab');
 
 // Stagger service cards so they cascade in sequence as they enter view.
 serviceCards.forEach((card, index) => {
   card.style.setProperty('--stagger-delay', `${index * 100}ms`);
+});
+
+// Stagger portfolio items for scroll reveal.
+portfolioItems.forEach((item, index) => {
+  item.style.setProperty('--portfolio-delay', `${index * 120}ms`);
 });
 
 const revealObserver = new IntersectionObserver(
@@ -95,6 +102,63 @@ const revealObserver = new IntersectionObserver(
 revealElements.forEach((element) => {
   revealObserver.observe(element);
 });
+
+// Portfolio tab filtering with smooth leave/hide/enter sequencing.
+if (portfolioTabs.length > 0 && portfolioItems.length > 0) {
+  let filterTimerId;
+
+  const applyPortfolioFilter = (activeCategory) => {
+    const matchingItems = [];
+    const nonMatchingItems = [];
+
+    portfolioItems.forEach((item) => {
+      const itemCategory = item.dataset.category;
+      const isMatch = activeCategory === 'all' || itemCategory === activeCategory;
+
+      if (isMatch) {
+        matchingItems.push(item);
+      } else {
+        nonMatchingItems.push(item);
+      }
+    });
+
+    nonMatchingItems.forEach((item) => {
+      item.classList.remove('is-entering');
+      item.classList.add('is-leaving');
+    });
+
+    clearTimeout(filterTimerId);
+    filterTimerId = window.setTimeout(() => {
+      nonMatchingItems.forEach((item) => {
+        item.classList.add('is-hidden');
+        item.classList.remove('is-leaving');
+      });
+
+      matchingItems.forEach((item) => {
+        item.classList.remove('is-hidden', 'is-leaving');
+        item.classList.add('is-entering');
+
+        requestAnimationFrame(() => {
+          item.classList.remove('is-entering');
+        });
+      });
+    }, 300);
+  };
+
+  portfolioTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const nextCategory = tab.dataset.filter ?? 'all';
+
+      portfolioTabs.forEach((candidate) => {
+        const isActive = candidate === tab;
+        candidate.classList.toggle('active', isActive);
+        candidate.setAttribute('aria-selected', String(isActive));
+      });
+
+      applyPortfolioFilter(nextCategory);
+    });
+  });
+}
 
 // About section entrance and stat count-up animation.
 const aboutSection = document.querySelector('#about');
