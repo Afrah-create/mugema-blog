@@ -89,3 +89,95 @@ const revealObserver = new IntersectionObserver(
 revealElements.forEach((element) => {
   revealObserver.observe(element);
 });
+
+// About section entrance and stat count-up animation.
+const aboutSection = document.querySelector('#about');
+const aboutImage = document.querySelector('.about-image-reveal');
+const aboutText = document.querySelector('.about-text-reveal');
+const aboutStatValues = document.querySelectorAll('.about-stat-value[data-target]');
+
+let aboutStatsAnimated = false;
+let aboutRevealed = false;
+
+const animateCount = (element, target, suffix = '') => {
+  const durationMs = 1300;
+  const startTime = performance.now();
+
+  const step = (currentTime) => {
+    const progress = Math.min((currentTime - startTime) / durationMs, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const value = Math.floor(eased * target);
+
+    element.textContent = `${value}${suffix}`;
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  };
+
+  requestAnimationFrame(step);
+};
+
+if (aboutSection && aboutImage && aboutText) {
+  // Start hidden only when JS is running so content never stays invisible.
+  aboutImage.classList.add('is-hidden');
+  aboutText.classList.add('is-hidden');
+
+  const revealAboutContent = () => {
+    if (aboutRevealed) {
+      return;
+    }
+
+    aboutImage.classList.remove('is-hidden');
+    aboutText.classList.remove('is-hidden');
+    aboutImage.classList.add('in-view');
+    aboutText.classList.add('in-view');
+    aboutRevealed = true;
+
+    if (!aboutStatsAnimated) {
+      aboutStatValues.forEach((stat) => {
+        const target = Number.parseInt(stat.dataset.target ?? '0', 10);
+        const suffix = stat.dataset.suffix ?? '';
+
+        if (!Number.isNaN(target) && target > 0) {
+          animateCount(stat, target, suffix);
+        }
+      });
+
+      aboutStatsAnimated = true;
+    }
+  };
+
+  // Ensure About never stays hidden if observer timing is missed.
+  const revealWhenNearViewport = () => {
+    const bounds = aboutSection.getBoundingClientRect();
+    if (bounds.top < window.innerHeight * 0.9) {
+      revealAboutContent();
+      window.removeEventListener('scroll', revealWhenNearViewport);
+    }
+  };
+
+  window.addEventListener('scroll', revealWhenNearViewport, { passive: true });
+  window.addEventListener('load', revealWhenNearViewport);
+  setTimeout(revealWhenNearViewport, 650);
+
+  const aboutObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        revealAboutContent();
+
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: '0px 0px -12% 0px',
+    }
+  );
+
+  aboutObserver.observe(aboutSection);
+}
