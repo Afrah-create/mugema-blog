@@ -73,6 +73,8 @@ const revealElements = document.querySelectorAll('.reveal');
 const serviceCards = document.querySelectorAll('.service-card.reveal');
 const portfolioItems = document.querySelectorAll('.portfolio-item.reveal');
 const portfolioTabs = document.querySelectorAll('.portfolio-tab');
+const journalHead = document.querySelector('.journal-head-reveal');
+const journalCards = document.querySelectorAll('.journal-card.journal-reveal');
 
 // Stagger service cards so they cascade in sequence as they enter view.
 serviceCards.forEach((card, index) => {
@@ -82,6 +84,11 @@ serviceCards.forEach((card, index) => {
 // Stagger portfolio items for scroll reveal.
 portfolioItems.forEach((item, index) => {
   item.style.setProperty('--portfolio-delay', `${index * 120}ms`);
+});
+
+// Stagger journal cards for a magazine-like cascade reveal.
+journalCards.forEach((card, index) => {
+  card.style.setProperty('--journal-delay', `${index * 150}ms`);
 });
 
 const revealObserver = new IntersectionObserver(
@@ -102,6 +109,42 @@ const revealObserver = new IntersectionObserver(
 revealElements.forEach((element) => {
   revealObserver.observe(element);
 });
+
+// Journal heading/cards observer that disconnects after all entries animate.
+const journalElements = [
+  ...(journalHead ? [journalHead] : []),
+  ...journalCards,
+];
+
+if (journalElements.length > 0) {
+  let remainingJournalElements = journalElements.length;
+
+  const journalObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+        remainingJournalElements -= 1;
+
+        if (remainingJournalElements <= 0) {
+          observer.disconnect();
+        }
+      });
+    },
+    {
+      threshold: 0.16,
+      rootMargin: '0px 0px -8% 0px',
+    }
+  );
+
+  journalElements.forEach((element) => {
+    journalObserver.observe(element);
+  });
+}
 
 // Portfolio tab filtering with smooth leave/hide/enter sequencing.
 if (portfolioTabs.length > 0 && portfolioItems.length > 0) {
