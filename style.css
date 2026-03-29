@@ -353,7 +353,7 @@ p {
   /* Keep hero background rendering stable across browsers on load. */
   background-attachment: scroll;
   background-image: linear-gradient(var(--hero-overlay), var(--hero-overlay)),
-    url("https://picsum.photos/1600/900");
+    url("assets/projects/Project1.jpeg");
   background-size: cover;
   background-position: center center;
 }
