@@ -367,3 +367,34 @@ if (aboutSection && aboutImage && aboutText) {
 
   aboutObserver.observe(aboutSection);
 }
+
+// Scroll Progress Bar & Counter
+const progressBar = document.getElementById('scroll-progress-bar');
+const scrollPercent = document.getElementById('scroll-percent');
+
+if (progressBar && scrollPercent) {
+  const updateScrollProgress = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const rawPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    const percent = Math.min(100, Math.max(0, Math.round(rawPercent)));
+
+    progressBar.style.width = `${percent}%`;
+    scrollPercent.textContent = String(percent);
+
+    progressBar.classList.toggle('complete', percent >= 100);
+    progressBar.classList.toggle('at-zero', percent <= 0);
+  };
+
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener('load', updateScrollProgress);
+  window.addEventListener('resize', updateScrollProgress);
+  updateScrollProgress();
+}
+
+// Dynamic Footer Year
+const footerYear = document.getElementById('footer-year');
+
+if (footerYear) {
+  footerYear.textContent = String(new Date().getFullYear());
+}

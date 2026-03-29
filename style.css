@@ -25,8 +25,24 @@
   --ease-standard: 300ms ease;
 }
 
+/* ── Horizontal Scroll Bug Fix ── */
+html,
+body {
+  /* Prevent any horizontal expansion during first paint. */
+  overflow-x: hidden;
+}
+
+html {
+  /* Keep scrollbar space reserved to avoid initial layout shift. */
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 /* Reset and base */
-* {
+*,
+*::before,
+*::after {
+  /* Ensure pseudo-elements cannot create unexpected overflow width. */
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -45,6 +61,113 @@ body {
 
 body.menu-open {
   overflow: hidden;
+}
+
+/* Scroll Progress Bar & Counter */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 0%;
+  max-width: 100%;
+  height: 2px;
+  background: var(--accent);
+  /* Clip the progress head within viewport bounds. */
+  overflow: hidden;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+#scroll-progress-bar::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 60%, transparent);
+  opacity: 1;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+#scroll-progress-bar.at-zero::after {
+  opacity: 0;
+}
+
+#scroll-progress-bar.complete::after {
+  transform: scale(1.3);
+  animation: pulse-dot 0.4s ease-in-out;
+}
+
+#scroll-counter {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 9998;
+  background: var(--nav-solid);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 243, 240, 0.92);
+  line-height: 1;
+  cursor: default;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: scroll-counter-enter 0.5s ease forwards;
+  animation-delay: 1s;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+#scroll-counter:hover {
+  background: #111111;
+  border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+  transform: scale(1.05);
+}
+
+#scroll-percent {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.scroll-percent-symbol {
+  margin-left: 1px;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(245, 243, 240, 0.75);
+}
+
+@keyframes scroll-counter-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 img {
@@ -110,6 +233,8 @@ p {
   top: 0;
   left: 0;
   width: 100%;
+  /* Prevent nav layer from creating accidental horizontal scroll. */
+  overflow-x: hidden;
   z-index: 1000;
   background: transparent;
   border-bottom: 1px solid transparent;
@@ -217,19 +342,24 @@ p {
 
 /* Hero */
 .hero {
+  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
   padding: 0;
   display: grid;
   place-items: center;
   position: relative;
   overflow: hidden;
+  /* Keep hero background rendering stable across browsers on load. */
+  background-attachment: scroll;
   background-image: linear-gradient(var(--hero-overlay), var(--hero-overlay)),
     url("https://picsum.photos/1600/900");
   background-size: cover;
-  background-position: center;
+  background-position: center center;
 }
 
 .hero-content {
+  width: 100%;
   max-width: 900px;
   padding-top: var(--nav-height);
   text-align: center;
@@ -1325,6 +1455,16 @@ p {
   stroke: var(--accent);
 }
 
+.contact-detail-link {
+  color: inherit;
+  transition: color var(--ease-standard);
+}
+
+.contact-detail-link:hover,
+.contact-detail-link:focus-visible {
+  color: var(--accent);
+}
+
 .contact-socials {
   margin-top: 1.2rem;
   display: flex;
@@ -1957,5 +2097,10 @@ p {
   .footer-right {
     align-items: center;
     text-align: center;
+  }
+
+  #scroll-progress-bar::after {
+    /* Remove progress head on small screens for a cleaner edge. */
+    display: none;
   }
 }
