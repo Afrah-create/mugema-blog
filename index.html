@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio and journal of Mugema Brian, fine artist and graphic designer in Kampala."
+    />
+    <title>Mugema Brian | Fine Artist & Graphic Designer</title>
+
+    <!-- Google Fonts: sophisticated serif + geometric sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Sticky navigation for section jumping -->
+    <header class="site-header">
+      <nav class="nav container" aria-label="Main navigation">
+        <a class="brand" href="#hero">Mugema Brian</a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#journal">Journal</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero: full viewport intro and CTA -->
+      <section id="hero" class="hero section">
+        <div class="container hero-content">
+          <h1 class="hero-name">Mugema Brian</h1>
+          <p class="hero-subheading">Fine Artist & Graphic Designer</p>
+          <p class="hero-location">Makerere University, Kampala</p>
+          <a id="hero-cta" class="btn btn-hero" href="#portfolio">View My Work</a>
+        </div>
+
+        <a class="scroll-indicator" href="#about" aria-label="Scroll to about section">
+          <span></span>
+        </a>
+      </section>
+
+      <!-- About: two-column portrait + biography -->
+      <section id="about" class="section about">
+        <div class="container split reveal">
+          <figure class="about-media">
+            <img
+              src="https://picsum.photos/seed/profileartist/760/920"
+              alt="Portrait placeholder for Elena Vale"
+              loading="lazy"
+            />
+          </figure>
+
+          <div class="about-copy">
+            <p class="section-label">About</p>
+            <h2>Design rooted in craft and curiosity</h2>
+            <p>
+              Elena Vale is a multidisciplinary creative working across fine art,
+              visual identity, and printed matter. Her practice blends analog
+              techniques with contemporary design systems to create work that
+              feels tactile, poetic, and strategically clear.
+            </p>
+            <p>
+              From gallery concepts to editorial campaigns, she collaborates with
+              founders, cultural spaces, and independent brands to shape visual
+              narratives that resonate both emotionally and commercially.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services: card grid -->
+      <section id="services" class="section services">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-label">Services</p>
+            <h2>Creative services for bold brands and personal projects</h2>
+          </div>
+
+          <div class="services-grid">
+            <article class="card reveal">
+              <h3>Illustration</h3>
+              <p>
+                Editorial and campaign illustration with custom palettes,
+                expressive line work, and concept-driven storytelling.
+              </p>
+            </article>
+
+            <article class="card reveal">
+              <h3>Brand Identity</h3>
+              <p>
+                Strategic identity systems including logo families, art
+                direction, and visual guidelines designed for growth.
+              </p>
+            </article>
+
+            <article class="card reveal">
+              <h3>Print Design</h3>
+              <p>
+                Posters, books, and packaging created with strong typographic
+                hierarchy and production-aware detail.
+              </p>
+            </article>
+
+            <article class="card reveal">
+              <h3>Editorial Layout</h3>
+              <p>
+                Publication and report design balancing readability, rhythm, and
+                image-led composition.
+              </p>
+            </article>
+
+            <article class="card reveal">
+              <h3>Art Direction</h3>
+              <p>
+                Visual direction across photography, digital assets, and launch
+                campaigns with cohesive storytelling.
+              </p>
+            </article>
+
+            <article class="card reveal">
+              <h3>Creative Consulting</h3>
+              <p>
+                Collaborative workshops to refine positioning, visual voice, and
+                communication style for evolving businesses.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio: masonry-inspired CSS grid gallery -->
+      <section id="portfolio" class="section portfolio">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-label">Portfolio</p>
+            <h2>Selected works</h2>
+          </div>
+
+          <div class="gallery">
+            <article class="gallery-item tall reveal">
+              <img
+                src="https://picsum.photos/seed/work01/900/1200"
+                alt="Abstract forms artwork"
+                loading="lazy"
+              />
+              <div class="overlay">
+                <h3>Echo Forms</h3>
+                <p>Fine Art</p>
+              </div>
+            </article>
+
+            <article class="gallery-item wide reveal">
+              <img
+                src="https://picsum.photos/seed/work02/1200/820"
+                alt="Poster design artwork"
+                loading="lazy"
+              />
+              <div class="overlay">
+                <h3>Night Poster Series</h3>
+                <p>Print Design</p>
+              </div>
+            </article>
+
+            <article class="gallery-item reveal">
+              <img
+                src="https://picsum.photos/seed/work03/850/950"
+                alt="Brand identity visuals"
+                loading="lazy"
+              />
+              <div class="overlay">
+                <h3>Atelier Rue</h3>
+                <p>Brand Identity</p>
+              </div>
+            </article>
+
+            <article class="gallery-item reveal">
+              <img
+                src="https://picsum.photos/seed/work04/840/980"
+                alt="Illustration with geometric texture"
+                loading="lazy"
+              />
+              <div class="overlay">
+                <h3>Drift Figures</h3>
+                <p>Illustration</p>
+              </div>
+            </article>
+
+            <article class="gallery-item wide reveal">
+              <img
+                src="https://picsum.photos/seed/work05/1250/840"
+                alt="Editorial spread design"
+                loading="lazy"
+              />
+              <div class="overlay">
+                <h3>Volume 07 Editorial</h3>
+                <p>Editorial Layout</p>
+              </div>
+            </article>
+
+            <article class="gallery-item tall reveal">
+              <img
+                src="https://picsum.photos/seed/work06/900/1250"
+                alt="Mixed media artwork"
+                loading="lazy"
+              />
+              <div class="overlay">
+                <h3>Muted Terrain</h3>
+                <p>Fine Art</p>
+              </div>
+            </article>
+
+            <article class="gallery-item reveal">
+              <img
+                src="https://picsum.photos/seed/work07/860/960"
+                alt="Packaging identity mockup"
+                loading="lazy"
+              />
+              <div class="overlay">
+                <h3>Nord Candle Co.</h3>
+                <p>Packaging</p>
+              </div>
+            </article>
+
+            <article class="gallery-item reveal">
+              <img
+                src="https://picsum.photos/seed/work08/860/980"
+                alt="Typographic print experiment"
+                loading="lazy"
+              />
+              <div class="overlay">
+                <h3>Type Study No. 4</h3>
+                <p>Print Design</p>
+              </div>
+            </article>
+
+            <article class="gallery-item wide reveal">
+              <img
+                src="https://picsum.photos/seed/work09/1280/860"
+                alt="Campaign art direction board"
+                loading="lazy"
+              />
+              <div class="overlay">
+                <h3>Season Launch 26</h3>
+                <p>Art Direction</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Journal: featured posts -->
+      <section id="journal" class="section journal">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-label">Journal</p>
+            <h2>Notes from the studio</h2>
+          </div>
+
+          <div class="posts">
+            <article class="post-card reveal">
+              <p class="post-date">March 12, 2026</p>
+              <h3>Working with Imperfect Textures in Digital Compositions</h3>
+              <p>
+                How scanned marks and paper grain can bring warmth and depth to
+                contemporary brand visuals.
+              </p>
+              <a href="#" aria-label="Read more about imperfect textures"
+                >Read more</a
+              >
+            </article>
+
+            <article class="post-card reveal">
+              <p class="post-date">February 27, 2026</p>
+              <h3>Designing Identity Systems That Age Gracefully</h3>
+              <p>
+                Building visual languages with enough flexibility to evolve while
+                staying recognizably coherent.
+              </p>
+              <a href="#" aria-label="Read more about identity systems"
+                >Read more</a
+              >
+            </article>
+
+            <article class="post-card reveal">
+              <p class="post-date">January 30, 2026</p>
+              <h3>From Sketchbook to Gallery Wall: A Process Breakdown</h3>
+              <p>
+                A behind-the-scenes look at turning exploratory studies into a
+                complete exhibition-ready series.
+              </p>
+              <a href="#" aria-label="Read more about process breakdown"
+                >Read more</a
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact: form + social links -->
+      <section id="contact" class="section contact">
+        <div class="container split contact-wrap reveal">
+          <div class="contact-copy">
+            <p class="section-label">Contact</p>
+            <h2>Let us create something memorable</h2>
+            <p>
+              Available for commissions, collaborations, and selected freelance
+              design projects.
+            </p>
+
+            <div class="socials" aria-label="Social media links">
+              <a href="#" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm9.5 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"
+                  />
+                </svg>
+              </a>
+
+              <a href="#" aria-label="Behance">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M2 5h7.5A4.5 4.5 0 0 1 13 12.6 4.5 4.5 0 0 1 9.25 19H2V5Zm2 2v3.2h5.3a1.6 1.6 0 1 0 0-3.2H4Zm0 5.2V17h5.5a2.4 2.4 0 1 0 0-4.8H4ZM15 8h7v1.7h-7V8Zm3.6 2.8c2.5 0 4.4 1.8 4.4 4.4v.8H17c.2 1.1 1.1 1.8 2.3 1.8.9 0 1.7-.3 2.2-.9l1.2 1.1a4.7 4.7 0 0 1-3.6 1.5c-2.9 0-4.9-1.9-4.9-4.8 0-2.7 2-4.7 4.4-4.7Zm0 1.6c-1.1 0-2 .7-2.2 1.8h4.4c-.2-1.1-1-1.8-2.2-1.8Z"
+                  />
+                </svg>
+              </a>
+
+              <a href="#" aria-label="Dribbble">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm6.9 4.5a8.4 8.4 0 0 0-4.6-2.8c.6.8 1.2 1.8 1.7 2.9 1-.4 2-.8 2.9-1.3ZM12 3.6c-.8 0-1.7.1-2.4.4 1 .9 2 2.1 2.8 3.4 1.6-.4 3.1-.9 4.4-1.5a8.4 8.4 0 0 0-4.8-2.3Zm-4.4 1.3a8.4 8.4 0 0 0-3.8 5.4c1.8 0 3.8-.2 5.7-.6-.6-1.1-1.3-2.1-1.9-2.9Zm-3.8 7a8.4 8.4 0 0 0 1.9 5.5c.7-1.3 1.9-2.5 3.6-3.3-.3-.8-.6-1.6-1-2.4-1.6.2-3.2.3-4.5.2Zm3.1 6.8a8.4 8.4 0 0 0 8.5 1.5c-.6-1.8-1.2-3.4-1.9-4.8-2.7.7-5 1.9-6.6 3.3Zm10 .6a8.4 8.4 0 0 0 3.5-6.2c-1.8 0-3.5.2-5.2.6.7 1.6 1.3 3.3 1.7 5.1Zm-2.4-7.3c1.9-.4 3.8-.6 5.8-.6a8.4 8.4 0 0 0-1-3.7c-1.1.5-2.3 1-3.6 1.4.3.9.6 1.8.9 2.9Z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <form class="contact-form" action="#" method="post">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+
+            <label for="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              required
+            />
+
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              placeholder="Tell me about your project"
+              required
+            ></textarea>
+
+            <button class="btn btn-dark" type="submit">Send Message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2026 Elena Vale. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
