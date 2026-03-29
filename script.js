@@ -75,6 +75,14 @@ const portfolioItems = document.querySelectorAll('.portfolio-item.reveal');
 const portfolioTabs = document.querySelectorAll('.portfolio-tab');
 const journalHead = document.querySelector('.journal-head-reveal');
 const journalCards = document.querySelectorAll('.journal-card.journal-reveal');
+const contactSection = document.querySelector('#contact');
+const contactLeftPanel = document.querySelector('.contact-panel-left');
+const contactRightPanel = document.querySelector('.contact-panel-right');
+const contactFields = document.querySelectorAll('.contact-field');
+const contactSocialLinks = document.querySelectorAll('.contact-social-link');
+const contactForm = document.querySelector('#contact-form');
+const contactSuccess = document.querySelector('#contact-success');
+const backToTopLink = document.querySelector('#back-to-top');
 
 // Stagger service cards so they cascade in sequence as they enter view.
 serviceCards.forEach((card, index) => {
@@ -143,6 +151,71 @@ if (journalElements.length > 0) {
 
   journalElements.forEach((element) => {
     journalObserver.observe(element);
+  });
+}
+
+// Contact section reveal animations and social stagger.
+if (contactSection && contactLeftPanel && contactRightPanel) {
+  let contactActivated = false;
+
+  const activateContactAnimations = () => {
+    if (contactActivated) {
+      return;
+    }
+
+    contactLeftPanel.classList.add('in-view');
+    contactRightPanel.classList.add('in-view');
+
+    contactFields.forEach((field, index) => {
+      window.setTimeout(() => {
+        field.classList.add('is-visible');
+      }, index * 80 + 120);
+    });
+
+    contactSocialLinks.forEach((link, index) => {
+      window.setTimeout(() => {
+        link.classList.add('is-visible');
+      }, index * 60 + 220);
+    });
+
+    contactActivated = true;
+  };
+
+  const contactObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        activateContactAnimations();
+        observer.unobserve(entry.target);
+        observer.disconnect();
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: '0px 0px -10% 0px',
+    }
+  );
+
+  contactObserver.observe(contactSection);
+}
+
+// Show inline success feedback for contact form submission.
+if (contactForm && contactSuccess) {
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    contactSuccess.classList.add('is-visible');
+    contactForm.reset();
+  });
+}
+
+// Smoothly scroll back to top from footer link.
+if (backToTopLink) {
+  backToTopLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
