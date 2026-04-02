@@ -1324,6 +1324,121 @@ p {
   transform: scaleX(1);
 }
 
+/* Portfolio project modal */
+body.project-modal-open {
+  overflow: hidden;
+}
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 260ms ease, visibility 260ms ease;
+}
+
+.project-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.project-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 8, 8, 0.82);
+  backdrop-filter: blur(4px);
+}
+
+.project-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(940px, 100%);
+  max-height: min(90vh, 860px);
+  overflow: auto;
+  background: #141313;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  box-shadow: 0 26px 54px rgba(0, 0, 0, 0.5);
+  color: rgba(248, 247, 244, 0.95);
+}
+
+.project-modal-close {
+  position: sticky;
+  top: 0.8rem;
+  margin-left: auto;
+  margin-right: 0.8rem;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.3rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+
+.project-modal-content {
+  margin-top: -1.2rem;
+  padding: 0 1.1rem 1.2rem;
+}
+
+.project-modal-media {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.project-modal-media img {
+  width: 100%;
+  max-height: min(52vh, 460px);
+  object-fit: cover;
+}
+
+.project-modal-category {
+  color: #eab29f;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  margin-bottom: 0.45rem;
+}
+
+.project-modal-title {
+  color: #fff;
+  font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+  margin-bottom: 0.65rem;
+}
+
+.project-modal-description {
+  color: rgba(245, 243, 240, 0.8);
+  line-height: 1.78;
+  font-size: clamp(0.92rem, 1.4vw, 1rem);
+}
+
+@media (max-width: 767px) {
+  .project-modal {
+    padding: 0.8rem;
+  }
+
+  .project-modal-dialog {
+    width: 100%;
+    max-height: 92vh;
+    border-radius: 14px;
+  }
+
+  .project-modal-content {
+    padding: 0 0.9rem 1rem;
+  }
+}
+
 /* Journal */
 .journal {
   padding: 7.75rem 0;

@@ -374,6 +374,66 @@ if (backToTopLink) {
 if (portfolioTabs.length > 0 && portfolioItems.length > 0) {
   let filterTimerId;
 
+  const projectDescriptions = {
+    'Morning Light, Kampala':
+      'A documentary photography study capturing how early light shapes rhythm, movement, and atmosphere in Kampala streets.',
+    'Figures in Contrast':
+      'A printmaking series focused on silhouette, tonal contrast, and emotional gesture through reduced visual language.',
+    'The Market at Midday':
+      'An observational photo essay around texture, repetition, and social choreography inside crowded market space.',
+    'Movement Studies Vol. I':
+      'Short-form videography experiments exploring body movement, pacing, and spatial tension in everyday environments.',
+    'Urban Textures':
+      'A print-led body of work translating worn surfaces, wall marks, and city traces into graphic compositions.',
+    'Quiet Gestures':
+      'A photographic sequence centered on subtle human gestures that communicate presence without explicit narrative.',
+    'Form and Shadow':
+      'A visual studies piece examining shape abstraction, shadow direction, and compositional balance.',
+    'Identity Marks':
+      'Print-focused explorations of symbols and repeated marks that suggest memory, belonging, and personal history.',
+    'Streets After Rain':
+      'A photography project on post-rain reflections, diffuse light, and layered street life in motion.',
+  };
+
+  const ensureProjectModal = () => {
+    let modal = document.querySelector('.project-modal');
+    if (modal) {
+      return modal;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'project-modal';
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML = `
+      <div class="project-modal-backdrop" data-close="true"></div>
+      <div class="project-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+        <button class="project-modal-close" type="button" aria-label="Close project view">×</button>
+        <div class="project-modal-content">
+          <div class="project-modal-media">
+            <img src="" alt="" loading="lazy" />
+          </div>
+          <p class="project-modal-category"></p>
+          <h3 id="project-modal-title" class="project-modal-title"></h3>
+          <p class="project-modal-description"></p>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+    return modal;
+  };
+
+  const setProjectModalState = (isOpen, sourceLink = null) => {
+    const modal = ensureProjectModal();
+    modal.classList.toggle('is-open', isOpen);
+    modal.setAttribute('aria-hidden', String(!isOpen));
+    document.body.classList.toggle('project-modal-open', isOpen);
+
+    if (!isOpen && sourceLink) {
+      sourceLink.focus();
+    }
+  };
+
   const applyPortfolioFilter = (activeCategory) => {
     const matchingItems = [];
     const nonMatchingItems = [];
@@ -423,6 +483,73 @@ if (portfolioTabs.length > 0 && portfolioItems.length > 0) {
       });
 
       applyPortfolioFilter(nextCategory);
+    });
+  });
+
+  portfolioItems.forEach((item) => {
+    const link = item.querySelector('.portfolio-link');
+    const titleElement = item.querySelector('.portfolio-title');
+    const categoryElement = item.querySelector('.portfolio-category');
+    const imageElement = item.querySelector('img');
+
+    if (!link || !titleElement || !categoryElement || !imageElement) {
+      return;
+    }
+
+    const projectTitle = titleElement.textContent.trim();
+    const projectCategory = categoryElement.textContent.trim();
+    const projectImage = imageElement.getAttribute('src') ?? '';
+    const projectImageAlt = imageElement.getAttribute('alt') ?? projectTitle;
+
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const modal = ensureProjectModal();
+      const modalImage = modal.querySelector('.project-modal-media img');
+      const modalCategory = modal.querySelector('.project-modal-category');
+      const modalTitle = modal.querySelector('.project-modal-title');
+      const modalDescription = modal.querySelector('.project-modal-description');
+
+      if (!modalImage || !modalCategory || !modalTitle || !modalDescription) {
+        return;
+      }
+
+      modalImage.src = projectImage;
+      modalImage.alt = projectImageAlt;
+      modalCategory.textContent = projectCategory;
+      modalTitle.textContent = projectTitle;
+      modalDescription.textContent =
+        projectDescriptions[projectTitle] ??
+        'A selected project from Mugema Brian\'s practice across photography, videography, and printmaking.';
+
+      setProjectModalState(true);
+
+      const closeButton = modal.querySelector('.project-modal-close');
+      closeButton?.focus();
+
+      const closeHandler = (closeEvent) => {
+        const closeTarget = closeEvent.target;
+        if (
+          closeTarget instanceof HTMLElement &&
+          (closeTarget.dataset.close === 'true' ||
+            closeTarget.classList.contains('project-modal-close'))
+        ) {
+          setProjectModalState(false, link);
+          modal.removeEventListener('click', closeHandler);
+          window.removeEventListener('keydown', escapeHandler);
+        }
+      };
+
+      const escapeHandler = (keyEvent) => {
+        if (keyEvent.key === 'Escape' && modal.classList.contains('is-open')) {
+          setProjectModalState(false, link);
+          modal.removeEventListener('click', closeHandler);
+          window.removeEventListener('keydown', escapeHandler);
+        }
+      };
+
+      modal.addEventListener('click', closeHandler);
+      window.addEventListener('keydown', escapeHandler);
     });
   });
 }
