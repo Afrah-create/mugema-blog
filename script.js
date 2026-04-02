@@ -4,6 +4,21 @@ const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 const heroCta = document.querySelector('#hero-cta');
 
+// Keep initial entry pinned to the top hero instead of restoring old scroll/hash.
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+const resetInitialScrollToHero = () => {
+  if (window.location.hash && window.location.hash !== '#hero') {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+};
+
+window.addEventListener('pageshow', resetInitialScrollToHero, { once: true });
+
 // Swap transparent nav for a solid nav after slight scrolling.
 const updateHeaderScrollState = () => {
   if (!siteHeader) {
@@ -397,4 +412,89 @@ const footerYear = document.getElementById('footer-year');
 
 if (footerYear) {
   footerYear.textContent = String(new Date().getFullYear());
+}
+
+// Hero Background — Particle Field Generator
+const initHeroParticles = () => {
+  const particlesContainer = document.querySelector('#hero-particles');
+  if (!particlesContainer || particlesContainer.dataset.generated === 'true') {
+    return;
+  }
+
+  particlesContainer.dataset.generated = 'true';
+
+  const mobileTotalCount = 35;
+  const isMobileViewport = window.innerWidth < 768;
+
+  const smallParticleCount = isMobileViewport
+    ? mobileTotalCount - 8
+    : Math.floor(Math.random() * 16) + 55;
+  const largeParticleCount = isMobileViewport
+    ? 8
+    : Math.floor(Math.random() * 6) + 15;
+
+  const createParticle = ({
+    sizeMin,
+    sizeMax,
+    opacityMin,
+    opacityMax,
+    durationMin,
+    durationMax,
+    isLarge,
+  }) => {
+    const particle = document.createElement('span');
+    const size = Math.random() * (sizeMax - sizeMin) + sizeMin;
+    const opacity = Math.random() * (opacityMax - opacityMin) + opacityMin;
+    const duration = Math.random() * (durationMax - durationMin) + durationMin;
+    const delay = Math.random() * -20;
+    const rise = -(Math.random() * 120 + 80);
+    const drift = Math.random() * 40 - 20;
+
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.top = `${Math.random() * 100}%`;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.setProperty('--p-opacity', opacity.toFixed(3));
+    particle.style.setProperty('--p-rise', `${rise.toFixed(1)}px`);
+    particle.style.setProperty('--p-drift', `${drift.toFixed(1)}px`);
+    particle.style.animationDuration = `${duration.toFixed(2)}s`;
+    particle.style.animationDelay = `${delay.toFixed(2)}s`;
+    particle.style.animationName = 'particle-float';
+
+    if (isLarge) {
+      particle.classList.add('particle-large');
+    }
+
+    particlesContainer.appendChild(particle);
+  };
+
+  for (let index = 0; index < smallParticleCount; index += 1) {
+    createParticle({
+      sizeMin: 1,
+      sizeMax: 3,
+      opacityMin: 0.08,
+      opacityMax: 0.35,
+      durationMin: 18,
+      durationMax: 40,
+      isLarge: false,
+    });
+  }
+
+  for (let index = 0; index < largeParticleCount; index += 1) {
+    createParticle({
+      sizeMin: 3,
+      sizeMax: 6,
+      opacityMin: 0.04,
+      opacityMax: 0.12,
+      durationMin: 30,
+      durationMax: 60,
+      isLarge: true,
+    });
+  }
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initHeroParticles, { once: true });
+} else {
+  initHeroParticles();
 }
