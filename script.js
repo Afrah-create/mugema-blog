@@ -503,53 +503,86 @@ if (portfolioTabs.length > 0 && portfolioItems.length > 0) {
 
     link.addEventListener('click', (event) => {
       event.preventDefault();
+      event.stopPropagation();
 
-      const modal = ensureProjectModal();
-      const modalImage = modal.querySelector('.project-modal-media img');
-      const modalCategory = modal.querySelector('.project-modal-category');
-      const modalTitle = modal.querySelector('.project-modal-title');
-      const modalDescription = modal.querySelector('.project-modal-description');
+      try {
+        const modal = ensureProjectModal();
+        const modalImage = modal.querySelector('.project-modal-media img');
+        const modalCategory = modal.querySelector('.project-modal-category');
+        const modalTitle = modal.querySelector('.project-modal-title');
+        const modalDescription = modal.querySelector('.project-modal-description');
 
-      if (!modalImage || !modalCategory || !modalTitle || !modalDescription) {
-        return;
+        if (!modalImage || !modalCategory || !modalTitle || !modalDescription) {
+          console.warn('Modal elements not found', {
+            modalImage: !!modalImage,
+            modalCategory: !!modalCategory,
+            modalTitle: !!modalTitle,
+            modalDescription: !!modalDescription,
+          });
+          return;
+        }
+
+        modalImage.src = projectImage;
+        modalImage.alt = projectImageAlt;
+        modalCategory.textContent = projectCategory;
+        modalTitle.textContent = projectTitle;
+        modalDescription.textContent =
+          projectDescriptions[projectTitle] ??
+          'A selected project from Mugema Brian\'s practice across photography, videography, and printmaking.';
+
+        setProjectModalState(true);
+
+        const closeButton = modal.querySelector('.project-modal-close');
+        if (closeButton) {
+          setTimeout(() => closeButton.focus(), 50);
+        }
+
+        // Clean up old handlers before adding new ones
+        const oldCloseHandler = modal._closeHandler;
+        const oldEscapeHandler = modal._escapeHandler;
+        if (oldCloseHandler) {
+          modal.removeEventListener('click', oldCloseHandler);
+        }
+        if (oldEscapeHandler) {
+          window.removeEventListener('keydown', oldEscapeHandler);
+        }
+
+        const closeHandler = (closeEvent) => {
+          const closeTarget = closeEvent.target;
+          if (
+            closeTarget instanceof HTMLElement &&
+            (closeTarget.dataset.close === 'true' ||
+              closeTarget.classList.contains('project-modal-close') ||
+              closeTarget.classList.contains('project-modal-backdrop'))
+          ) {
+            setProjectModalState(false, link);
+            modal.removeEventListener('click', closeHandler);
+            window.removeEventListener('keydown', escapeHandler);
+            delete modal._closeHandler;
+            delete modal._escapeHandler;
+          }
+        };
+
+        const escapeHandler = (keyEvent) => {
+          if (keyEvent.key === 'Escape' && modal.classList.contains('is-open')) {
+            setProjectModalState(false, link);
+            modal.removeEventListener('click', closeHandler);
+            window.removeEventListener('keydown', escapeHandler);
+            delete modal._closeHandler;
+            delete modal._escapeHandler;
+          }
+        };
+
+        modal._closeHandler = closeHandler;
+        modal._escapeHandler = escapeHandler;
+
+        modal.addEventListener('click', closeHandler);
+        window.addEventListener('keydown', escapeHandler);
+      } catch (error) {
+        console.error('Portfolio modal error:', error);
       }
 
-      modalImage.src = projectImage;
-      modalImage.alt = projectImageAlt;
-      modalCategory.textContent = projectCategory;
-      modalTitle.textContent = projectTitle;
-      modalDescription.textContent =
-        projectDescriptions[projectTitle] ??
-        'A selected project from Mugema Brian\'s practice across photography, videography, and printmaking.';
-
-      setProjectModalState(true);
-
-      const closeButton = modal.querySelector('.project-modal-close');
-      closeButton?.focus();
-
-      const closeHandler = (closeEvent) => {
-        const closeTarget = closeEvent.target;
-        if (
-          closeTarget instanceof HTMLElement &&
-          (closeTarget.dataset.close === 'true' ||
-            closeTarget.classList.contains('project-modal-close'))
-        ) {
-          setProjectModalState(false, link);
-          modal.removeEventListener('click', closeHandler);
-          window.removeEventListener('keydown', escapeHandler);
-        }
-      };
-
-      const escapeHandler = (keyEvent) => {
-        if (keyEvent.key === 'Escape' && modal.classList.contains('is-open')) {
-          setProjectModalState(false, link);
-          modal.removeEventListener('click', closeHandler);
-          window.removeEventListener('keydown', escapeHandler);
-        }
-      };
-
-      modal.addEventListener('click', closeHandler);
-      window.addEventListener('keydown', escapeHandler);
+      return false;
     });
   });
 }
