@@ -79,16 +79,32 @@ window.addEventListener('scroll', updateHeaderScrollState);
 window.addEventListener('load', updateHeaderScrollState);
 
 if (navToggle && navLinks) {
+  const isMobileViewport = () => window.innerWidth <= mobileMenuBreakpoint;
+
+  const setMenuState = (isOpen) => {
+    navLinks.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('menu-open', isOpen);
+  };
+
   const closeMobileMenu = () => {
-    navLinks.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('menu-open');
+    setMenuState(false);
   };
 
   navToggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-    document.body.classList.toggle('menu-open', isOpen);
+    if (!isMobileViewport()) {
+      return;
+    }
+
+    const shouldOpen = !navLinks.classList.contains('open');
+    setMenuState(shouldOpen);
+  });
+
+  // Close when tapping the menu backdrop area outside nav links.
+  navLinks.addEventListener('click', (event) => {
+    if (event.target === navLinks) {
+      closeMobileMenu();
+    }
   });
 
   // Close the menu after selecting a section on small screens.
@@ -100,7 +116,7 @@ if (navToggle && navLinks) {
 
   // Keep nav state in sync when viewport exits mobile menu breakpoint.
   const syncMenuWithViewport = () => {
-    if (window.innerWidth > mobileMenuBreakpoint) {
+    if (!isMobileViewport()) {
       closeMobileMenu();
     }
   };
