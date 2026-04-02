@@ -2410,7 +2410,7 @@ body.project-modal-open {
   .about-copy p {
     font-size: 1rem;
   }
-
+/*
   .about-stats {
     flex-direction: column;
     align-items: flex-start;
@@ -2428,7 +2428,7 @@ body.project-modal-open {
     padding-left: 0;
     padding-top: 0.65rem;
   }
-
+*/
   .journal {
     padding: 5.8rem 0;
   }
