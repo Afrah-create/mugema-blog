@@ -335,6 +335,14 @@ p {
   transition: transform 200ms ease, background var(--ease-standard);
 }
 
+.nav-toggle[aria-expanded="true"] span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
 .site-header.is-scrolled .nav-toggle {
   border-color: rgba(255, 255, 255, 0.34);
   background: rgba(255, 255, 255, 0.04);
@@ -2047,6 +2055,8 @@ p {
 
   .nav-toggle {
     display: inline-flex;
+    position: relative;
+    z-index: 1002;
   }
 
   .nav-links {
@@ -2057,6 +2067,8 @@ p {
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    overflow-y: auto;
+    z-index: 1001;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;

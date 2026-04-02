@@ -3,6 +3,7 @@ const siteHeader = document.querySelector('.site-header');
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 const heroCta = document.querySelector('#hero-cta');
+const mobileMenuBreakpoint = 820;
 
 // Keep initial entry pinned to the top hero instead of restoring old scroll/hash.
 if ('scrollRestoration' in history) {
@@ -78,6 +79,12 @@ window.addEventListener('scroll', updateHeaderScrollState);
 window.addEventListener('load', updateHeaderScrollState);
 
 if (navToggle && navLinks) {
+  const closeMobileMenu = () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
+
   navToggle.addEventListener('click', () => {
     const isOpen = navLinks.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', String(isOpen));
@@ -87,10 +94,27 @@ if (navToggle && navLinks) {
   // Close the menu after selecting a section on small screens.
   navLinks.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('menu-open');
+      closeMobileMenu();
     });
+  });
+
+  // Keep nav state in sync when viewport exits mobile menu breakpoint.
+  const syncMenuWithViewport = () => {
+    if (window.innerWidth > mobileMenuBreakpoint) {
+      closeMobileMenu();
+    }
+  };
+
+  window.addEventListener('resize', syncMenuWithViewport, { passive: true });
+  window.addEventListener('orientationchange', syncMenuWithViewport, {
+    passive: true,
+  });
+
+  // Keyboard close for accessibility and quick recovery on small screens.
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeMobileMenu();
+    }
   });
 }
 
