@@ -19,6 +19,52 @@ const resetInitialScrollToHero = () => {
 
 window.addEventListener('pageshow', resetInitialScrollToHero, { once: true });
 
+// Hero Name — Typewriter Reload Transition
+document.addEventListener('DOMContentLoaded', () => {
+  const heroName = document.querySelector('.hero-name');
+  if (!heroName) {
+    return;
+  }
+
+  const fullName = heroName.textContent.trim();
+  if (!fullName) {
+    return;
+  }
+
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  heroName.textContent = '';
+  heroName.classList.add('is-typewriting');
+
+  if (prefersReducedMotion) {
+    heroName.textContent = fullName;
+    heroName.classList.remove('is-typewriting');
+    heroName.classList.add('typing-complete');
+    return;
+  }
+
+  const viewportWidth = window.innerWidth;
+  const typingSpeedMs = viewportWidth <= 375 ? 68 : viewportWidth < 768 ? 78 : 90;
+  const typingStartDelayMs = viewportWidth < 768 ? 220 : 320;
+  let charIndex = 0;
+
+  const typeNextCharacter = () => {
+    if (charIndex >= fullName.length) {
+      heroName.classList.remove('is-typewriting');
+      heroName.classList.add('typing-complete');
+      return;
+    }
+
+    heroName.textContent += fullName.charAt(charIndex);
+    charIndex += 1;
+    window.setTimeout(typeNextCharacter, typingSpeedMs);
+  };
+
+  window.setTimeout(typeNextCharacter, typingStartDelayMs);
+});
+
 // Swap transparent nav for a solid nav after slight scrolling.
 const updateHeaderScrollState = () => {
   if (!siteHeader) {
