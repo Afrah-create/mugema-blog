@@ -356,6 +356,7 @@ p {
     url("assets/projects/Project1.jpeg");
   background-size: cover;
   background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .hero-content {
@@ -2102,5 +2103,156 @@ p {
   #scroll-progress-bar::after {
     /* Remove progress head on small screens for a cleaner edge. */
     display: none;
+  }
+}
+
+/* ── Hero Section — Responsive Fixes ── */
+
+/* Hero text behavior: keep clean single-line lock where space allows. */
+.hero-name {
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+/* Tablet + mobile hero layout refinement (up to 1023px). */
+@media (max-width: 1023px) {
+  .hero {
+    min-height: 85vh;
+    padding-top: clamp(70px, 10vh, 100px);
+    background-attachment: scroll;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    margin-inline: auto;
+    text-align: center;
+    /* Keep reveal animations from producing horizontal spill during entrance. */
+    overflow: hidden;
+    padding: clamp(80px, 12vh, 140px) clamp(24px, 6vw, 120px);
+    gap: clamp(8px, 2vh, 20px);
+  }
+
+  .hero-content > * {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-name {
+    margin-bottom: 0;
+    font-size: clamp(36px, 8vw, 96px);
+    letter-spacing: clamp(0.05em, 1vw, 0.2em);
+    line-height: 1.08;
+  }
+
+  .hero-subheading {
+    margin: 0;
+    margin-top: clamp(12px, 2vh, 20px);
+    font-size: clamp(13px, 2.5vw, 18px);
+    letter-spacing: clamp(0.1em, 0.5vw, 0.3em);
+    font-weight: 400;
+  }
+
+  .hero-location {
+    margin: 0;
+    margin-top: clamp(8px, 1.5vh, 14px);
+    font-size: clamp(11px, 1.8vw, 14px);
+    letter-spacing: 0.15em;
+    color: rgba(248, 247, 244, 0.65);
+  }
+
+  .btn-hero {
+    align-self: center;
+    margin: 0;
+    margin-top: clamp(24px, 4vh, 40px);
+    font-size: clamp(11px, 1.5vw, 13px);
+  }
+
+  .scroll-indicator {
+    bottom: 24px;
+    width: 22px;
+    height: 38px;
+  }
+
+  .scroll-indicator span {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Mobile hero viewport and contrast fixes (below 768px). */
+@media (max-width: 767px) {
+  .hero {
+    min-height: -webkit-fill-available;
+    min-height: 100svh;
+    background-attachment: scroll;
+    background-image: linear-gradient(rgba(7, 7, 7, 0.6), rgba(7, 7, 7, 0.6)),
+      url("assets/projects/Project1.jpeg");
+  }
+
+  .hero-content {
+    padding-top: clamp(80px, 12vh, 140px);
+    padding-bottom: clamp(80px, 12vh, 140px);
+  }
+
+  .btn-hero {
+    padding: 14px 32px;
+    min-height: 44px;
+  }
+
+  .scroll-indicator {
+    bottom: 20px;
+  }
+}
+
+/* Very small mobile devices (up to 480px). */
+@media (max-width: 480px) {
+  .hero-name {
+    white-space: normal;
+    word-break: normal;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+}
+
+/* Smallest phones like iPhone SE (320px - 375px). */
+@media (max-width: 375px) {
+  .hero-name {
+    font-size: clamp(32px, 10.5vw, 42px);
+    letter-spacing: 0.04em;
+  }
+
+  .hero-subheading {
+    font-size: clamp(11px, 3.3vw, 13px);
+  }
+
+  .hero-location {
+    font-size: clamp(11px, 3vw, 12px);
+  }
+}
+
+/* Very narrow devices below 360px: keep button tappable without overflow. */
+@media (max-width: 359px) {
+  .btn-hero {
+    width: auto;
+    min-height: 44px;
+    padding: 14px 24px;
+  }
+}
+
+/* Short mobile landscape screens: allow content to define hero height. */
+@media (max-height: 450px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 100px 24px 60px;
   }
 }
