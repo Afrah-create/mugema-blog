@@ -353,12 +353,42 @@ if (contactSection && contactLeftPanel && contactRightPanel) {
   contactObserver.observe(contactSection);
 }
 
-// Show inline success feedback for contact form submission.
+// Handle contact form submission via WhatsApp.
 if (contactForm && contactSuccess) {
   contactForm.addEventListener('submit', (event) => {
     event.preventDefault();
+
+    // Get form data
+    const fullName = document.querySelector('#full-name').value.trim();
+    const email = document.querySelector('#email-address').value.trim();
+    const subject = document.querySelector('#subject').value.trim();
+    const message = document.querySelector('#message').value.trim();
+
+    // Validate form
+    if (!fullName || !email || !subject || !message) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    // Create WhatsApp message with form data
+    const whatsappMessage = `*Contact Form Submission*%0A%0A*Name:* ${encodeURIComponent(fullName)}%0A*Email:* ${encodeURIComponent(email)}%0A*Subject:* ${encodeURIComponent(subject)}%0A%0A*Message:*%0A${encodeURIComponent(message)}`;
+
+    // WhatsApp number (256708384946)
+    const whatsappLink = `https://wa.me/256708384946?text=${whatsappMessage}`;
+
+    // Show success message
     contactSuccess.classList.add('is-visible');
     contactForm.reset();
+
+    // Open WhatsApp in a new tab after a brief delay
+    setTimeout(() => {
+      window.open(whatsappLink, '_blank');
+    }, 800);
+
+    // Hide success message after 5 seconds
+    setTimeout(() => {
+      contactSuccess.classList.remove('is-visible');
+    }, 5000);
   });
 }
 
