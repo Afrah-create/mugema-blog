@@ -2,8 +2,9 @@
 const siteHeader = document.querySelector('.site-header');
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
+const navOverlay = document.querySelector('.nav-overlay');
 const heroCta = document.querySelector('#hero-cta');
-const mobileMenuBreakpoint = 820;
+const mobileMenuBreakpoint = 768;
 
 // Keep initial entry pinned to the top hero instead of restoring old scroll/hash.
 if ('scrollRestoration' in history) {
@@ -80,11 +81,56 @@ window.addEventListener('load', updateHeaderScrollState);
 
 if (navToggle && navLinks) {
   const isMobileViewport = () => window.innerWidth <= mobileMenuBreakpoint;
+  const navItems = navLinks.querySelectorAll('li');
+
+  navItems.forEach((item, index) => {
+    item.style.setProperty('--nav-stagger', String(index));
+  });
+
+  const getFocusableMenuElements = () => {
+    return navLinks.querySelectorAll(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+  };
+
+  const trapMenuFocus = (event) => {
+    if (event.key !== 'Tab' || !navLinks.classList.contains('open')) {
+      return;
+    }
+
+    const focusableElements = getFocusableMenuElements();
+    if (focusableElements.length === 0) {
+      return;
+    }
+
+    const first = focusableElements[0];
+    const last = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
 
   const setMenuState = (isOpen) => {
     navLinks.classList.toggle('open', isOpen);
     navToggle.setAttribute('aria-expanded', String(isOpen));
     document.body.classList.toggle('menu-open', isOpen);
+    navOverlay?.classList.toggle('is-visible', isOpen);
+
+    if (isOpen) {
+      window.setTimeout(() => {
+        const firstFocusable = getFocusableMenuElements()[0];
+        firstFocusable?.focus();
+      }, 120);
+      document.addEventListener('keydown', trapMenuFocus);
+    } else {
+      document.removeEventListener('keydown', trapMenuFocus);
+      navToggle.focus();
+    }
   };
 
   const closeMobileMenu = () => {
@@ -105,6 +151,10 @@ if (navToggle && navLinks) {
     if (event.target === navLinks) {
       closeMobileMenu();
     }
+  });
+
+  navOverlay?.addEventListener('click', () => {
+    closeMobileMenu();
   });
 
   // Close the menu after selecting a section on small screens.
