@@ -405,24 +405,18 @@ if (portfolioTabs.length > 0 && portfolioItems.length > 0) {
   let filterTimerId;
 
   const projectDescriptions = {
-    'Morning Light, Kampala':
-      'A documentary photography study capturing how early light shapes rhythm, movement, and atmosphere in Kampala streets.',
-    'Figures in Contrast':
-      'A printmaking series focused on silhouette, tonal contrast, and emotional gesture through reduced visual language.',
-    'The Market at Midday':
-      'An observational photo essay around texture, repetition, and social choreography inside crowded market space.',
-    'Movement Studies Vol. I':
-      'Short-form videography experiments exploring body movement, pacing, and spatial tension in everyday environments.',
-    'Urban Textures':
-      'A print-led body of work translating worn surfaces, wall marks, and city traces into graphic compositions.',
-    'Quiet Gestures':
-      'A photographic sequence centered on subtle human gestures that communicate presence without explicit narrative.',
-    'Form and Shadow':
-      'A visual studies piece examining shape abstraction, shadow direction, and compositional balance.',
-    'Identity Marks':
-      'Print-focused explorations of symbols and repeated marks that suggest memory, belonging, and personal history.',
-    'Streets After Rain':
-      'A photography project on post-rain reflections, diffuse light, and layered street life in motion.',
+    'Heritage Mask':
+      'Detailed graphite study of African tribal iconography.',
+    'Organic Veins':
+      'A surrealist exploration of the human form merged with botanical elements.',
+    'The Leader':
+      'A high-fidelity portrait study focusing on texture and conviction.',
+    'Prayer & Pattern':
+      'A celebration of cultural beauty and spiritual devotion through henna art.',
+    'Floral Synthesis':
+      'A multi-layered digital edit blending portraiture with organic textures.',
+    'The Studio':
+      'A glimpse into the workspace where traditional tools meet creative vision.',
   };
 
   const ensureProjectModal = () => {

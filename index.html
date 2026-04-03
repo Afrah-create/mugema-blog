@@ -28,7 +28,18 @@
     <!-- Sticky navigation for section jumping -->
     <header class="site-header">
       <nav class="nav container" aria-label="Main navigation">
-        <a class="brand" href="#hero">Mugema Brian</a>
+        <a class="brand" href="#hero" aria-label="Mugema Brian home">
+          <img
+            class="brand-logo"
+            src="assets/projects/logo.jpeg"
+            alt="Mugema Brian logo"
+            loading="eager"
+          />
+          <span class="brand-copy">
+            <span class="brand-name">Mugema Brian</span>
+            <span class="brand-slogan">Art Beyond imagination</span>
+          </span>
+        </a>
 
         <button
           class="nav-toggle"
@@ -180,46 +191,6 @@
               </p>
             </article>
 
-            <article class="service-card reveal">
-              <svg class="service-icon" viewBox="0 0 56 56" aria-hidden="true">
-                <rect x="10" y="12" width="36" height="30" rx="2.5" />
-                <path d="M20 42h16" />
-                <circle cx="28" cy="27" r="4" />
-              </svg>
-              <h3>Visual Storytelling</h3>
-              <p>
-                Weaving together photography, video and print into
-                cohesive narratives that document and reimagine identity,
-                environment and contemporary Ugandan life.
-              </p>
-            </article>
-
-            <article class="service-card reveal">
-              <svg class="service-icon" viewBox="0 0 56 56" aria-hidden="true">
-                <path d="M12 40V15l16 9.5L44 15v25" />
-                <path d="M28 24.5V40" />
-              </svg>
-              <h3>Composition &amp; Form Studies</h3>
-              <p>
-                A deep focus on the formal elements of visual art —
-                line, shape, texture, contrast and form — as the foundation
-                for all creative and conceptual work.
-              </p>
-            </article>
-
-            <article class="service-card reveal">
-              <svg class="service-icon" viewBox="0 0 56 56" aria-hidden="true">
-                <path d="M10 38c8-1.1 14-5.2 18-12 4.1 6.8 10 10.9 18 12" />
-                <path d="M28 15v11" />
-                <circle cx="28" cy="12" r="3" />
-              </svg>
-              <h3>Community &amp; Cultural Practice</h3>
-              <p>
-                Shaped by the vibrant cultural energy of Kampala and
-                the communities Brian engages with. Art as a reflection of
-                place, people and lived experience.
-              </p>
-            </article>
           </div>
         </div>
       </section>
@@ -240,142 +211,100 @@
             <button class="portfolio-tab active" type="button" role="tab" aria-selected="true" data-filter="all">
               All
             </button>
-            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="photography">
-              Photography
+            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="fine-art">
+              Fine Art
             </button>
-            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="videography">
-              Videography
-            </button>
-            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="printmaking">
-              Printmaking
-            </button>
-            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="visual-studies">
-              Visual Studies
+            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="digital-design">
+              Digital Design
             </button>
           </div>
 
           <div class="portfolio-grid">
-            <article class="portfolio-item item-large reveal" data-category="photography">
+            <article class="portfolio-item item-large reveal" data-category="fine-art">
               <img
-                src="assets/projects/project1.jpg"
-                alt="Expressive mixed media art composition"
+                src="assets/projects/drawing1.jpeg"
+                alt="Heritage Mask: Detailed graphite study of African tribal iconography."
                 loading="lazy"
               />
               <div class="portfolio-overlay">
-                <p class="portfolio-category">Photography</p>
-                <h3 class="portfolio-title">Morning Light, Kampala</h3>
+                <p class="portfolio-category">Fine Art</p>
+                <h3 class="portfolio-title">Heritage Mask</h3>
+                <p class="portfolio-desc">Detailed graphite study of African tribal iconography.</p>
                 <span class="portfolio-line" aria-hidden="true"></span>
                 <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="portfolio-item item-tall reveal" data-category="printmaking">
+            <article class="portfolio-item item-tall reveal" data-category="fine-art">
               <img
-                src="assets/projects/project2.jpg"
-                alt="Brand identity symbol system mockups"
+                src="assets/projects/drawing2.jpeg"
+                alt="Organic Veins: A surrealist exploration of the human form merged with botanical elements."
                 loading="lazy"
               />
               <div class="portfolio-overlay">
-                <p class="portfolio-category">Printmaking</p>
-                <h3 class="portfolio-title">Figures in Contrast</h3>
+                <p class="portfolio-category">Fine Art</p>
+                <h3 class="portfolio-title">Organic Veins</h3>
+                <p class="portfolio-desc">A surrealist exploration of the human form merged with botanical elements.</p>
                 <span class="portfolio-line" aria-hidden="true"></span>
                 <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="portfolio-item item-standard reveal" data-category="photography">
+            <article class="portfolio-item item-standard reveal" data-category="fine-art">
               <img
-                src="assets/projects/project3.jpg"
-                alt="Poster series typography concept"
+                src="assets/projects/drawing3.jpeg"
+                alt="The Leader: A high-fidelity portrait study focusing on texture and conviction."
                 loading="lazy"
               />
               <div class="portfolio-overlay">
-                <p class="portfolio-category">Photography</p>
-                <h3 class="portfolio-title">The Market at Midday</h3>
+                <p class="portfolio-category">Fine Art</p>
+                <h3 class="portfolio-title">The Leader</h3>
+                <p class="portfolio-desc">A high-fidelity portrait study focusing on texture and conviction.</p>
                 <span class="portfolio-line" aria-hidden="true"></span>
                 <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="portfolio-item item-standard reveal" data-category="videography">
+            <article class="portfolio-item item-standard reveal" data-category="fine-art">
               <img
-                src="assets/projects/project4.jpg"
-                alt="Social campaign visual assets"
+                src="assets/projects/drawing5.jpeg"
+                alt="Prayer & Pattern: A celebration of cultural beauty and spiritual devotion through henna art."
                 loading="lazy"
               />
               <div class="portfolio-overlay">
-                <p class="portfolio-category">Videography</p>
-                <h3 class="portfolio-title">Movement Studies Vol. I</h3>
+                <p class="portfolio-category">Fine Art</p>
+                <h3 class="portfolio-title">Prayer &amp; Pattern</h3>
+                <p class="portfolio-desc">A celebration of cultural beauty and spiritual devotion through henna art.</p>
                 <span class="portfolio-line" aria-hidden="true"></span>
                 <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="portfolio-item item-standard reveal" data-category="printmaking">
+            <article class="portfolio-item item-standard reveal" data-category="digital-design">
               <img
-                src="assets/projects/project5.jpg"
-                alt="Experimental fine art canvas"
+                src="assets/projects/edit1.jpeg"
+                alt="Floral Synthesis: A multi-layered digital edit blending portraiture with organic textures."
                 loading="lazy"
               />
               <div class="portfolio-overlay">
-                <p class="portfolio-category">Printmaking</p>
-                <h3 class="portfolio-title">Urban Textures</h3>
+                <p class="portfolio-category">Digital Design</p>
+                <h3 class="portfolio-title">Floral Synthesis</h3>
+                <p class="portfolio-desc">A multi-layered digital edit blending portraiture with organic textures.</p>
                 <span class="portfolio-line" aria-hidden="true"></span>
                 <a href="#" class="portfolio-link">View Project →</a>
               </div>
             </article>
 
-            <article class="portfolio-item item-medium reveal" data-category="photography">
-              <img
-                src="assets/projects/project6.jpg"
-                alt="Identity and packaging concept board"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <p class="portfolio-category">Photography</p>
-                <h3 class="portfolio-title">Quiet Gestures</h3>
-                <span class="portfolio-line" aria-hidden="true"></span>
-                <a href="#" class="portfolio-link">View Project →</a>
-              </div>
-            </article>
-
-            <article class="portfolio-item item-large reveal" data-category="visual-studies">
-              <img
-                src="assets/projects/project7.jpg"
-                alt="Custom typographic artwork composition"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <p class="portfolio-category">Visual Studies</p>
-                <h3 class="portfolio-title">Form and Shadow</h3>
-                <span class="portfolio-line" aria-hidden="true"></span>
-                <a href="#" class="portfolio-link">View Project →</a>
-              </div>
-            </article>
-
-            <article class="portfolio-item item-standard reveal" data-category="printmaking">
+            <article class="portfolio-item item-medium reveal" data-category="digital-design">
               <img
                 src="assets/projects/Project1.jpeg"
-                alt="Editorial publication layout spread"
+                alt="The Studio: A glimpse into the workspace where traditional tools meet creative vision."
                 loading="lazy"
               />
               <div class="portfolio-overlay">
-                <p class="portfolio-category">Printmaking</p>
-                <h3 class="portfolio-title">Identity Marks</h3>
-                <span class="portfolio-line" aria-hidden="true"></span>
-                <a href="#" class="portfolio-link">View Project →</a>
-              </div>
-            </article>
-
-            <article class="portfolio-item item-tall reveal" data-category="photography">
-              <img
-                src="assets/projects/project1.jpg"
-                alt="Digital storytelling campaign direction board"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <p class="portfolio-category">Photography</p>
-                <h3 class="portfolio-title">Streets After Rain</h3>
+                <p class="portfolio-category">Digital Design</p>
+                <h3 class="portfolio-title">The Studio</h3>
+                <p class="portfolio-desc">A glimpse into the workspace where traditional tools meet creative vision.</p>
                 <span class="portfolio-line" aria-hidden="true"></span>
                 <a href="#" class="portfolio-link">View Project →</a>
               </div>
@@ -403,28 +332,27 @@
 
           <div class="journal-layout">
             <article class="journal-card journal-featured journal-reveal">
-              <a class="journal-card-link" href="#" aria-label="Read Finding the Frame: How I See Kampala">
+              <a class="journal-card-link" href="#" aria-label="Read Capturing Complex Emotions">
                 <div class="journal-image-wrap">
                   <img
-                    src="assets/projects/project2.jpg"
-                    alt="Abstract urban inspired fine art composition"
+                    src="assets/projects/drawing4.jpeg"
+                    alt="Capturing Complex Emotions: A blog-style post about contrasting raw human intensity with moments of kindness."
                     loading="lazy"
                   />
                 </div>
                 <div class="journal-content">
-                  <p class="journal-category">Photography</p>
-                  <h3>Finding the Frame: How I See Kampala</h3>
+                  <p class="journal-category">Creative Process</p>
+                  <h3>Capturing Complex Emotions</h3>
                   <p class="journal-excerpt">
-                    The city moves fast. But slow down, look into a doorway,
-                    watch someone carry a load on their head, and you find an entire
-                    world of composition waiting to be captured. This is how I
-                    approach documentary photography.
+                    A blog-style post about contrasting raw human intensity with moments
+                    of kindness, guided by facial expression, body language, and emotional
+                    tension in one frame.
                   </p>
                   <div class="journal-meta">
                     <img src="assets/profilepic.jpeg" alt="Mugema Brian avatar" loading="lazy" />
                     <span>Mugema Brian</span>
                     <span class="meta-dot" aria-hidden="true">•</span>
-                    <span>12 June 2024</span>
+                    <span>3 April 2026</span>
                   </div>
                 </div>
               </a>
@@ -432,54 +360,33 @@
 
             <div class="journal-side">
               <article class="journal-card journal-reveal">
-                <a class="journal-card-link" href="#" aria-label="Read From Photograph to Print: My Translation Process">
+                <a class="journal-card-link" href="#" aria-label="Read The Anatomy of an Edit">
                   <div class="journal-image-wrap">
-                    <img
-                      src="assets/projects/project3.jpg"
-                      alt="Sketchbook and brand identity design process"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="journal-content">
-                    <p class="journal-category">Printmaking</p>
-                    <h3>From Photograph to Print: My Translation Process</h3>
-                    <p class="journal-excerpt">
-                      Every print begins with an image. I study the photograph —
-                      its light, its shadows, its emotional weight — and then ask myself
-                      what remains when I reduce it to line, shape and contrast.
-                    </p>
-                    <div class="journal-meta">
-                      <img src="assets/profilepic.jpeg" alt="Mugema Brian avatar" loading="lazy" />
-                      <span>Mugema Brian</span>
-                      <span class="meta-dot" aria-hidden="true">•</span>
-                      <span>3 August 2024</span>
+                    <div class="journal-image-pair" aria-label="The Blueprint Series process images">
+                      <img
+                        src="assets/projects/photo-edit1.jpeg"
+                        alt="The Anatomy of an Edit: A technical walkthrough showing the layering and skeleton of digital compositions."
+                        loading="lazy"
+                      />
+                      <img
+                        src="assets/projects/photo-edit2.jpeg"
+                        alt="The Anatomy of an Edit: A technical walkthrough showing the layering and skeleton of digital compositions."
+                        loading="lazy"
+                      />
                     </div>
                   </div>
-                </a>
-              </article>
-
-              <article class="journal-card journal-reveal">
-                <a class="journal-card-link" href="#" aria-label="Read What the Margaret Trowell School Gave Me">
-                  <div class="journal-image-wrap">
-                    <img
-                      src="assets/projects/project4.jpg"
-                      alt="Student creative workspace at university"
-                      loading="lazy"
-                    />
-                  </div>
                   <div class="journal-content">
-                    <p class="journal-category">Reflection</p>
-                    <h3>What the Margaret Trowell School Gave Me</h3>
+                    <p class="journal-category">Journal</p>
+                    <h3>The Anatomy of an Edit</h3>
                     <p class="journal-excerpt">
-                      Four years at Makerere shaped not just my technical skills
-                      but my entire way of seeing. The school taught me that art is
-                      inseparable from the community and culture that produces it.
+                      A technical walkthrough showing the layering and skeleton of digital
+                      compositions, from early blueprint structure to final visual rhythm.
                     </p>
                     <div class="journal-meta">
                       <img src="assets/profilepic.jpeg" alt="Mugema Brian avatar" loading="lazy" />
                       <span>Mugema Brian</span>
                       <span class="meta-dot" aria-hidden="true">•</span>
-                      <span>19 September 2024</span>
+                      <span>3 April 2026</span>
                     </div>
                   </div>
                 </a>
