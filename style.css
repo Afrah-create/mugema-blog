@@ -2410,7 +2410,11 @@ body.project-modal-open {
 
 @media (max-width: 360px) {
   .brand-slogan {
-    display: none;
+    display: block;
+    font-size: 0.42rem;
+    letter-spacing: 0.09em;
+    line-height: 1.25;
+    white-space: normal;
   }
 
   .nav-toggle {
