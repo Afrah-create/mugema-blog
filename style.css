@@ -1456,8 +1456,20 @@ p {
   border-radius: 6px;
   font-size: 0.68rem;
   letter-spacing: 0.12em;
+  text-transform: uppercase;
   background: var(--accent-soft);
   color: var(--accent);
+}
+
+.catalog-format-note {
+  flex: 1 1 200px;
+  min-width: 0;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: #615b54;
 }
 
 .catalog-desc {
