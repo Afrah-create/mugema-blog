@@ -1370,6 +1370,106 @@ p {
   transform: scaleX(1);
 }
 
+/* Catalog download */
+.catalog {
+  padding: 7.75rem 0;
+  background: #f8f5f0;
+}
+
+.catalog-head {
+  text-align: center;
+  margin-inline: auto;
+  margin-bottom: 2.25rem;
+}
+
+.catalog-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  color: rgba(37, 35, 33, 0.68);
+}
+
+.catalog-label::after {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: rgba(37, 35, 33, 0.33);
+}
+
+.catalog-head h2 {
+  font-size: clamp(2.5rem, 4.2vw, 3.25rem);
+  color: var(--text);
+  margin-bottom: 0.85rem;
+}
+
+.catalog-subtext {
+  max-width: 640px;
+  margin-inline: auto;
+  font-size: 0.97rem;
+  color: #656058;
+  line-height: 1.75;
+}
+
+.catalog-panel {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.catalog-panel-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.75rem 1.85rem;
+  background: var(--surface);
+  border: 1px solid rgba(37, 35, 33, 0.12);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.catalog-panel-copy {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.catalog-format {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #4a4540;
+  margin-bottom: 0.65rem;
+}
+
+.catalog-format-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.28rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.catalog-desc {
+  font-size: 0.93rem;
+  line-height: 1.7;
+  color: #615b54;
+}
+
+.catalog-download {
+  flex-shrink: 0;
+}
+
 /* Portfolio project modal */
 body.project-modal-open {
   overflow: hidden;
@@ -2276,6 +2376,20 @@ body.project-modal-open {
   .portfolio-filters {
     justify-content: flex-start;
     padding-inline: 0.4rem;
+  }
+
+  .catalog-panel-inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .catalog-format {
+    justify-content: center;
+  }
+
+  .catalog-download {
+    width: 100%;
   }
 }
 
